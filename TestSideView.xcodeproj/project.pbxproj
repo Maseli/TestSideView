@@ -24,6 +24,7 @@
 		04FED87B16F0E28A001F19E3 /* LQMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FED87916F0E28A001F19E3 /* LQMenuViewController.xib */; };
 		04FED88216F0E486001F19E3 /* LQSetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FED88016F0E486001F19E3 /* LQSetupViewController.m */; };
 		04FED88316F0E486001F19E3 /* LQSetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FED88116F0E486001F19E3 /* LQSetupViewController.xib */; };
+		04FED88516F0E9DB001F19E3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 04FED88416F0E9DB001F19E3 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		04FED87F16F0E486001F19E3 /* LQSetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQSetupViewController.h; sourceTree = "<group>"; };
 		04FED88016F0E486001F19E3 /* LQSetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQSetupViewController.m; sourceTree = "<group>"; };
 		04FED88116F0E486001F19E3 /* LQSetupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQSetupViewController.xib; sourceTree = "<group>"; };
+		04FED88416F0E9DB001F19E3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 		04DE8EA016EF956000B4A58F = {
 			isa = PBXGroup;
 			children = (
+				04FED88416F0E9DB001F19E3 /* README.md */,
 				04DE8EB516EF956000B4A58F /* TestSideView */,
 				04DE8EAE16EF956000B4A58F /* Frameworks */,
 				04DE8EAC16EF956000B4A58F /* Products */,
@@ -215,6 +218,7 @@
 				04DE8EDA16EF9B8100B4A58F /* View.xib in Resources */,
 				04FED87B16F0E28A001F19E3 /* LQMenuViewController.xib in Resources */,
 				04FED88316F0E486001F19E3 /* LQSetupViewController.xib in Resources */,
+				04FED88516F0E9DB001F19E3 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

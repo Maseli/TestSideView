@@ -26,6 +26,11 @@
     [self.revealSideViewController setDirectionsToShowBounce:PPRevealSideDirectionNone];
     [self.revealSideViewController setPanInteractionsWhenClosed:PPRevealSideInteractionContentView | PPRevealSideInteractionNavigationBar];
     
+    // 设置左边滑动的Offset值
+    [self.revealSideViewController changeOffset:400.0f forDirection:PPRevealSideDirectionLeft];
+    // 设置右边滑动的Offset值
+    [self.revealSideViewController changeOffset:400.0f forDirection:PPRevealSideDirectionRight];
+    
     self.window.rootViewController = self.revealSideViewController;
     
     self.window.backgroundColor = [UIColor whiteColor];

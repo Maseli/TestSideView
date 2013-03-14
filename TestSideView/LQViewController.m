@@ -36,6 +36,12 @@
     
     LQSetupViewController *setup = [[LQSetupViewController alloc] initWithNibName:@"LQSetupViewController" bundle:nil];
     [self.revealSideViewController preloadViewController:setup forSide:PPRevealSideDirectionRight];
+    
+    // 设置左边滑动的Offset值
+    [self.revealSideViewController changeOffset:180 forDirection:PPRevealSideDirectionLeft];
+    // 设置右边滑动的Offset值
+    [self.revealSideViewController changeOffset:80 forDirection:PPRevealSideDirectionRight];
+
 }
 
 - (void)showLeft:(id)sender {

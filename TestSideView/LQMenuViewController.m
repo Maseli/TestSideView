@@ -44,27 +44,35 @@
 
 // UITableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 6;
+    return [menuNames count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *reuseIdentifier = @"cellIdentifier";
     UITableViewCell *cell;
     cell = [[UITableViewCell alloc] init];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(16, 2, 100, 28)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(48, 2, 100, 28)];
     [label setText: [menuNames objectAtIndex:indexPath.row]];
     label.backgroundColor = [UIColor clearColor];
     
+    // 被选中的行标记为不同的背景
     if(indexPath.row == 0) {
         UIImage *bg = [UIImage imageNamed:@"menuCell_bg.png"];
         [cell addSubview:[[UIImageView alloc] initWithImage:bg]];
+    } else {
+        // 绘制行分隔线,被选中的行不使用
+        NSLog(@"准备绘制分隔线,这个是第%d",indexPath.row);
+        if(indexPath.row != [menuNames count]-1) {
+            UIImage *separator = [UIImage imageNamed:@"menuCell_separator.png"];
+            UIImageView *separatorView = [[UIImageView alloc] initWithFrame:CGRectMake(4.0f, 33.0, 132, 1)];
+            separatorView.image = separator;
+            [cell addSubview:separatorView];
+        }
     }
     
-    UIImage *separator = [UIImage imageNamed:@"menuCell_separator.png"];
-    UIImageView *separatorView = [[UIImageView alloc] initWithFrame:CGRectMake(4.0f, 33.0, 132, 1)];
-    separatorView.image = separator;
-    [cell addSubview:separatorView];
-    
+    // label左侧的图标
+    UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(15, 5, 24, 24)];
+    [icon setImage:[UIImage imageNamed:@"cell_icon.png"]];
+    [cell addSubview:icon];
     [cell addSubview:label];
 
 //    cell = [self.tableMenu dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];

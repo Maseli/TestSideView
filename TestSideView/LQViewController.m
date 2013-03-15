@@ -9,6 +9,7 @@
 #import "LQViewController.h"
 #import "LQMenuViewController.h"
 #import "LQSetupViewController.h"
+#import "vars.h"
 
 @interface LQViewController ()
 
@@ -21,7 +22,7 @@
     [super viewDidLoad];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Test" style:UIBarButtonItemStylePlain target:self action:@selector(showLeft:)];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Setup" style:UIBarButtonItemStylePlain target:self action:@selector(showRight:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"i" style:UIBarButtonItemStylePlain target:self action:@selector(showRight:)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,18 +39,18 @@
     [self.revealSideViewController preloadViewController:setup forSide:PPRevealSideDirectionRight];
     
     // 设置左边滑动的Offset值
-    [self.revealSideViewController changeOffset:180 forDirection:PPRevealSideDirectionLeft];
+    [self.revealSideViewController changeOffset:OFFSETLEFT forDirection:PPRevealSideDirectionLeft];
     // 设置右边滑动的Offset值
-    [self.revealSideViewController changeOffset:80 forDirection:PPRevealSideDirectionRight];
+    [self.revealSideViewController changeOffset:OFFSETRIGHT forDirection:PPRevealSideDirectionRight];
 
 }
 
 - (void)showLeft:(id)sender {
-    [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft animated:YES];
+    [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft withOffset:OFFSETLEFT animated:YES];
 }
 
 - (void)showRight:(id)sender {
-    [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionRight animated:YES];
+    [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionRight withOffset:OFFSETRIGHT animated:YES];
 }
 
 @end

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LQSetupViewController : UIViewController
+@interface LQSetupViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+
+@property (strong, nonatomic) IBOutlet UITableView *menuTable;
 
 @end

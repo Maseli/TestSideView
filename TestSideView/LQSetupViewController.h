@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LQViewController.h"
 
 @interface LQSetupViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 

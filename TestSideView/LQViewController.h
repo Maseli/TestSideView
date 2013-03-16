@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AwesomeMenu.h"
 
-@interface LQViewController : UIViewController
+@interface LQViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, AwesomeMenuDelegate>
+
+@property (strong, nonatomic) IBOutlet UITableView *newsTable;
 
 @end

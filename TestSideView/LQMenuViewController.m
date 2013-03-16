@@ -30,7 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    menuNames = [NSArray arrayWithObjects:@"通知公告", @"家庭作业", @"考试成绩", @"在校表现", @"平安校园", @"订阅短信",@"课程表",nil];
+    menuNames = [NSArray arrayWithObjects:@"全部", @"通知公告", @"家庭作业", @"考试成绩", @"在校表现", @"平安校园", @"订阅短信",@"课程表",nil];
     
     // 隐藏UITableView的默认分隔线
     [self.tableMenu setSeparatorStyle:UITableViewCellSeparatorStyleNone];

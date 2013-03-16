@@ -8,6 +8,7 @@
 
 #import "LQSetupViewController.h"
 #import "vars.h"
+#import "LQMessageViewController.h"
 
 @interface LQSetupViewController () {
     NSArray *menuNames;
@@ -60,12 +61,20 @@
         [separator setImage:[UIImage imageNamed:@"menuCell_separator.png"]];
         [cell addSubview:separator];
     }
-    
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     [cell addSubview:label];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 34;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    LQMessageViewController *messageVC = [[LQMessageViewController alloc] init];
+    UINavigationController *nav = [self.revealSideViewController rootViewController];
+    [self.revealSideViewController popViewControllerAnimated:YES];
+    [nav pushViewController:messageVC animated:YES];
+
 }
 @end

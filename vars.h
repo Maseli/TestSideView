@@ -13,4 +13,6 @@
 #define OFFSETLEFT 178
 #define OFFSETRIGHT 200
 
+#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+
 #endif

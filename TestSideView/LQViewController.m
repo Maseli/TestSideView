@@ -20,16 +20,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // 设置NavigatonBar
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"banner.png"] forBarMetrics:UIBarMetricsDefault];
+    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Test" style:UIBarButtonItemStylePlain target:self action:@selector(showLeft:)];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"i" style:UIBarButtonItemStylePlain target:self action:@selector(showRight:)];
-    
+        
     /* 初始化AwesomeMenu */
     UIImage *storyMenuItemImage = [UIImage imageNamed:@"bg-menuitem.png"];
     UIImage *storyMenuItemImagePressed = [UIImage imageNamed:@"bg-menuitem-highlighted.png"];
     
     UIImage *starImage = [UIImage imageNamed:@"icon-star.png"];
-    
+
     AwesomeMenuItem *starMenuItem1 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage highlightedImage:storyMenuItemImagePressed ContentImage:starImage highlightedContentImage:nil];
     AwesomeMenuItem *starMenuItem2 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage highlightedImage:storyMenuItemImagePressed ContentImage:starImage highlightedContentImage:nil];
     AwesomeMenuItem *starMenuItem3 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage highlightedImage:storyMenuItemImagePressed ContentImage:starImage highlightedContentImage:nil];
@@ -51,13 +55,16 @@
      menu.nearRadius = 50.0f;
      */
     
-    menu.startPoint = CGPointMake(30, 386.0);
+    if(iPhone5)
+        menu.startPoint = CGPointMake(30, 466.0);
+    else
+        menu.startPoint = CGPointMake(30, 386.0);
 	
     menu.delegate = self;
     
     [self.view addSubview:menu];
 
-
+    /* AwesomeMenu实例结束 */
     
 }
 

@@ -13,8 +13,8 @@
 #pragma mark - Unit constants
 static const CGFloat DefaultOffset = 70.0;
 static const CGFloat DefaultOffsetBouncing = 5.0;
-static const CGFloat OpenAnimationTime = 0.3;
-static const CGFloat OpenAnimationTimeBouncingRatio = 0.3;
+static const CGFloat OpenAnimationTime = 0.2;// default is 0.3
+static const CGFloat OpenAnimationTimeBouncingRatio = 0.2;// default is 0.3
 static const CGFloat BOUNCE_ERROR_OFFSET = 14.0;
 static const CGFloat divisionNumber = 5.0;
 static const CGFloat OFFSET_TRIGGER_CHOSE_DIRECTION = 3.0;

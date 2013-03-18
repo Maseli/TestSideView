@@ -19,6 +19,7 @@
 @implementation LQSetupViewController
 
 @synthesize menuTable = _menuTable;
+@synthesize searchText = _searchText;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,6 +33,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // 初始化搜索文本框,配合背景调整好位置和效果
+    UITextField *searchTextField = [[UITextField alloc] initWithFrame:CGRectMake(70, 11, 185, 30)];
+    [self setSearchText:searchTextField];
+    [self.searchText setPlaceholder:@""];
+    [self.searchText setTextColor:[UIColor whiteColor]];
+    [self.searchText setBackgroundColor:[UIColor clearColor]];
+    [self.searchText setBorderStyle:UITextBorderStyleNone];
+    [self.view addSubview:self.searchText];
+    
+    
+    
     // 初始化菜单列表名称
     menuNames = [NSArray arrayWithObjects:@"班级留言",@"在线交流",@"教育动态",@"我的账号", nil];
     // 去掉UITableView的分隔线

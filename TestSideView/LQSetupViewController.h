@@ -13,4 +13,6 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *menuTable;
 
+@property (strong, nonatomic) UITextField *searchText;
+
 @end

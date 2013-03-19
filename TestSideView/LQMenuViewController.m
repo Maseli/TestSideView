@@ -7,6 +7,7 @@
 //
 
 #import "LQMenuViewController.h"
+#import "vars.h"
 
 @interface LQMenuViewController () {
     NSArray *menuNames;
@@ -30,6 +31,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // 初始化这个view的背景,都是木纹图案
+    UIImageView *rightBg;
+    if(!iPhone5) {
+        rightBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"right_bg.png"]];
+    } else {
+        rightBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"right_bg_i5"]];
+    }
+    [self.view addSubview:rightBg];
+
     menuNames = [NSArray arrayWithObjects:@"全部", @"通知公告", @"家庭作业", @"考试成绩", @"在校表现", @"平安校园", @"订阅短信",@"课程表",nil];
     
     // 隐藏UITableView的默认分隔线

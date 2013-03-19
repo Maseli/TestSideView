@@ -10,7 +10,7 @@
 #define TestSideView_vars_h
 
 
-#define OFFSETLEFT 178
+#define OFFSETLEFT 30
 #define OFFSETRIGHT 30
 
 #define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)

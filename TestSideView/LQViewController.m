@@ -21,6 +21,15 @@
 {
     [super viewDidLoad];
     
+    // 初始化这个view的背景,都是木纹图案
+    UIImageView *rightBg;
+    if(!iPhone5) {
+        rightBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"right_bg.png"]];
+    } else {
+        rightBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"right_bg_i5"]];
+    }
+    [self.view addSubview:rightBg];
+    
     // 设置NavigatonBar
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"banner.png"] forBarMetrics:UIBarMetricsDefault];
     
@@ -49,17 +58,27 @@
     [rightButton addTarget:self action:@selector(showRight:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     
-    
-//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_navItem.png"] style:nil target:self action:@selector(showLeft:)];
-//    [self.navigationItem.leftBarButtonItem setImage:[UIImage imageNamed:@"left_navItem.png"]];
-    
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"i" style:UIBarButtonItemStylePlain target:self action:@selector(showRight:)];
-    
+    // 初始化主页的数据表格
+    UITableView *mainTable;
+    // 分辨率差别导致表格的高度是不同的
+    if(!iPhone5) {
+        mainTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 416)];
+    } else {
+        mainTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 505)];
+    }
+    self.newsTable = mainTable;
+    [self.newsTable setDataSource:self];
+    [self.newsTable setDelegate:self];
+    // 隐藏UITableView的默认分隔线
+    [self.newsTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.newsTable setBackgroundView:rightBg];
+    [self.view addSubview:self.newsTable];
+        
     /* 初始化AwesomeMenu */
     UIImage *storyMenuItemImage = [UIImage imageNamed:@"bg-menuitem.png"];
     UIImage *storyMenuItemImagePressed = [UIImage imageNamed:@"bg-menuitem-highlighted.png"];
     
-    UIImage *starImage = [UIImage imageNamed:@"icon-star.png"];
+//    UIImage *starImage = [UIImage imageNamed:@"icon-star.png"];
 
     AwesomeMenuItem *starMenuItem1 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage highlightedImage:storyMenuItemImagePressed ContentImage:[UIImage imageNamed:@"roundIcon1.png"] highlightedContentImage:nil];
     AwesomeMenuItem *starMenuItem2 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage highlightedImage:storyMenuItemImagePressed ContentImage:[UIImage imageNamed:@"roundIcon2.png"] highlightedContentImage:nil];
@@ -70,7 +89,7 @@
     NSArray *menus = [NSArray arrayWithObjects:starMenuItem1, starMenuItem2, starMenuItem3, starMenuItem4, starMenuItem5, nil];
     
     AwesomeMenu *menu = [[AwesomeMenu alloc] initWithFrame:self.view.bounds menus:menus];
-	menu.menuWholeAngle = M_PI/2*1.25;
+	menu.menuWholeAngle = M_PI/2*1.25;// 5个分布在PI/2
     
 	// customize menu
 	/*
@@ -83,9 +102,9 @@
      */
     
     if(iPhone5)
-        menu.startPoint = CGPointMake(30, 466.0);
+        menu.startPoint = CGPointMake(30, 471.0);
     else
-        menu.startPoint = CGPointMake(30, 386.0);
+        menu.startPoint = CGPointMake(30, 391.0);
 	
     menu.delegate = self;
     
@@ -123,7 +142,8 @@
     [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionRight withOffset:OFFSETRIGHT animated:YES];
 }
 
-/* Table */
+#pragma mark TableView datas
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 16;
 }
@@ -133,12 +153,17 @@
     
     if(indexPath.row == 0) {
         // 如果是第一行,则显示图片一张
-        UIImageView *cover = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 150)];
-        [cover setImage:[UIImage imageNamed:@"cover.png"]];
+        UIImageView *cover = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 119)];
+        [cover setImage:[UIImage imageNamed:@"mainCover.png"]];
         [cell addSubview:cover];
     } else {
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 2, 100, 28)];
-        [label setText:@"测试"];
+        // 如果不是第一行,加载该行的背景
+        UIImageView *cellBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"indexCell_bg.png"]];
+        [cell addSubview:cellBg];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(95, 13, 180, 33)];
+        [label setFont:[UIFont fontWithName:@"Arial Rounded" size:32]];
+        [label setText:@"明天下午召开家长会，请家长务必......"];
+        [label setBackgroundColor:[UIColor clearColor]];
         [cell addSubview:label];
     }
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -147,21 +172,16 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.row == 0)
-        return 150;
+        return 119;
     else
-        return 34;
+        return 57;
 }
 
 - (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"1111111111111111111111------%d",indexPath.row);
-    UITableViewCell *cell = [self.newsTable cellForRowAtIndexPath:indexPath];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(140, 2, 100, 28)];
-    [label setText:@"测试"];
-    
-    [cell addSubview:label];
-
 }
 
+#pragma mark -
 /* AwesomeMenu */
 - (void)AwesomeMenu:(AwesomeMenu *)menu didSelectIndex:(NSInteger)idx {
     

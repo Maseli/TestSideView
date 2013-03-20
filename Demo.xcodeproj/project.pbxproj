@@ -261,8 +261,6 @@
 		04DE8EA016EF956000B4A58F = {
 			isa = PBXGroup;
 			children = (
-				6E28DCA916F9D7520035F100 /* AudioToolbox.framework */,
-				04DFF6FA16F4679A00C1B28C /* QuartzCore.framework */,
 				04FED88416F0E9DB001F19E3 /* README.md */,
 				04DE8EB516EF956000B4A58F /* TestSideView */,
 				04DE8EAE16EF956000B4A58F /* Frameworks */,
@@ -281,6 +279,8 @@
 		04DE8EAE16EF956000B4A58F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6E28DCA916F9D7520035F100 /* AudioToolbox.framework */,
+				04DFF6FA16F4679A00C1B28C /* QuartzCore.framework */,
 				04DE8EAF16EF956000B4A58F /* UIKit.framework */,
 				04DE8EB116EF956000B4A58F /* Foundation.framework */,
 				04DE8EB316EF956000B4A58F /* CoreGraphics.framework */,

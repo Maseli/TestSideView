@@ -8,6 +8,7 @@
 
 #import "AwesomeMenu.h"
 #import <QuartzCore/QuartzCore.h>
+#import <AudioToolbox/AudioToolbox.h>
 
 static CGFloat const kAwesomeMenuDefaultNearRadius = 110.0f;
 static CGFloat const kAwesomeMenuDefaultEndRadius = 120.0f;
@@ -187,7 +188,7 @@ static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float an
         _addButton.transform = CGAffineTransformMakeRotation(angle);
     }];
     if(isPlayStartSound == NO) {
-        NSLog(@"向左转！");
+        [self playSound:0];
         isPlayStartSound = YES;
     }
     
@@ -266,7 +267,13 @@ static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float an
         _addButton.transform = CGAffineTransformMakeRotation(angle);
     }];
     if(isPlayStartSound == YES) {
-        NSLog(@"向左转。。。。。。");
+        // 播放展开声音
+        [self playSound:1];
+        isPlayStartSound = NO;
+    } else {
+        // 播放关闭声音
+        [self playSound:0];
+        isPlayStartSound = YES;
     }
     
     // expand or close animation
@@ -426,5 +433,15 @@ static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float an
     return animationgroup;
 }
 
+- (void) playSound:(int)sound{
+    SystemSoundID soundID;
+    NSURL *filePath;
+    if(sound == 0)
+        filePath = [[NSBundle mainBundle] URLForResource:@"nav_in" withExtension: @"aif"];
+    else
+        filePath = [[NSBundle mainBundle] URLForResource:@"nav_out" withExtension:@"aif"];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)filePath, &soundID);
+    AudioServicesPlaySystemSound(soundID);
+}
 
 @end

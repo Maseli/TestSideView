@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "04DE8EAA16EF956000B4A58F"
-            BuildableName = "TestSideView.app"
-            BlueprintName = "TestSideView"
-            ReferencedContainer = "container:TestSideView.xcodeproj">
+            BuildableName = "Demo.app"
+            BlueprintName = "Demo"
+            ReferencedContainer = "container:Demo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -52,9 +52,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "04DE8EAA16EF956000B4A58F"
-            BuildableName = "TestSideView.app"
-            BlueprintName = "TestSideView"
-            ReferencedContainer = "container:TestSideView.xcodeproj">
+            BuildableName = "Demo.app"
+            BlueprintName = "Demo"
+            ReferencedContainer = "container:Demo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>

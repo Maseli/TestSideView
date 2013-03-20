@@ -6,6 +6,7 @@
 //  Copyright (c) 2013年 M. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "LQMenuViewController.h"
 #import "vars.h"
 
@@ -41,9 +42,16 @@
     }
     [self.view addSubview:rightBg];
 
+    // 初始化页首的班级主页横条
     UIImageView *banjizhuye = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 33)];
     [banjizhuye setImage:[UIImage imageNamed:@"banjizhuye.png"]];
     [self.view addSubview:banjizhuye];
+    
+    // 初始化班级主页横条刷新按钮
+    UIButton *refreshBtn = [[UIButton alloc] initWithFrame:CGRectMake(269, 9, 12, 15)];
+    [refreshBtn setImage:[UIImage imageNamed:@"refresh.png"] forState:UIControlStateNormal];
+    [refreshBtn addTarget:self action:@selector(startAnimation:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:refreshBtn];
     
     // 初始化每个班级主页的总按钮
     UIButton *banji_btn1 = [[UIButton alloc] initWithFrame:CGRectMake(0, 33, 320, 44)];
@@ -64,6 +72,26 @@
     [teacherPage2 setImage:[UIImage imageNamed:@"teacherPage_bg.png"] forState:UIControlStateNormal];
     [self.view addSubview:teacherPage2];
 
+    // 初始化每个班级主页的总按钮
+    UIButton *banji_btn4 = [[UIButton alloc] initWithFrame:CGRectMake(0, 165, 320, 44)];
+    [banji_btn4 setImage:[UIImage imageNamed:@"homePage_bg"] forState:UIControlStateNormal];
+    UILabel *banji_name4 = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 150, 24)];
+    [banji_name4 setText:@"六年四班主页"];
+    [banji_name4 setTextColor:[UIColor whiteColor]];
+    [banji_name4 setBackgroundColor:[UIColor clearColor]];
+    [banji_name4 setFont:[UIFont fontWithName:[[UIFont fontNamesForFamilyName:@"Heiti SC"] objectAtIndex:1] size:20]];
+    [banji_btn4 addSubview:banji_name4];
+    [self.view addSubview:banji_btn4];
+    
+    UIButton *teacherPage4 = [[UIButton alloc] initWithFrame:CGRectMake(0, 209, 320, 44)];
+    [teacherPage4 setImage:[UIImage imageNamed:@"teacherPage_bg.png"] forState:UIControlStateNormal];
+    [self.view addSubview:teacherPage4];
+    
+    UIButton *teacherPage5 = [[UIButton alloc] initWithFrame:CGRectMake(0, 253, 320, 44)];
+    [teacherPage5 setImage:[UIImage imageNamed:@"teacherPage_bg.png"] forState:UIControlStateNormal];
+    [self.view addSubview:teacherPage5];
+    
+    
 // 废弃代码
 //    menuNames = [NSArray arrayWithObjects:@"全部", @"通知公告", @"家庭作业", @"考试成绩", @"在校表现", @"平安校园", @"订阅短信",@"课程表",nil];
     
@@ -115,4 +143,25 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 34;
 }
+
+#pragma mark -
+
+- (void)startAnimation:(UIButton *)button {
+    button.userInteractionEnabled = NO;
+    
+    CABasicAnimation* rotationAnimation;
+    // transform.rotation.z是垂直与平面的轴即z轴
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0 ];///* full rotation*/ * rotations * duration ];
+    rotationAnimation.duration = 1;
+    rotationAnimation.cumulative = YES;
+    // 转10圈
+    rotationAnimation.repeatCount = 6;
+    
+    [button.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+    
+    button.userInteractionEnabled = YES;
+}
+
+
 @end

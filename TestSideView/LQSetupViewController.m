@@ -6,6 +6,7 @@
 //  Copyright (c) 2013年 M. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "LQSetupViewController.h"
 #import "vars.h"
 #import "LQMessageViewController.h"
@@ -56,19 +57,61 @@
     [self.searchText setBackgroundColor:[UIColor clearColor]];
     [self.searchText setBorderStyle:UITextBorderStyleNone];
     [self.searchText setPlaceholder:@"搜索"];
-    [self.view addSubview:self.searchText];    
+    [self.view addSubview:self.searchText];
+    
+    // 初始化右上角的输入按钮
+    UIButton *right_inputBtn = [[UIButton alloc] initWithFrame:CGRectMake(270, 7, 44, 29)];
+    [right_inputBtn setImage:[UIImage imageNamed:@"right_inputBtn.png"] forState:UIControlStateNormal];
+    [right_inputBtn setImage:[UIImage imageNamed:@"_right_inputBtn.png"] forState:UIControlStateHighlighted];
+    // TODO 添加按钮事件
+    [right_inputBtn addTarget:self action:@selector(testBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:right_inputBtn];
     
     // 我的账号按钮
     UIButton *myUsername = [[UIButton alloc] initWithFrame:CGRectMake(0, 43, 320, 43)];
     [myUsername setBackgroundColor:[UIColor clearColor]];
     [myUsername setImage:[UIImage imageNamed:@"myUsername_btn.png"] forState:UIControlStateNormal];
-    [myUsername setImage:[UIImage imageNamed:@"myUsername_btn.png"] forState:UIControlStateHighlighted];
+//    [myUsername setImage:[UIImage imageNamed:@"myUsername_btn.png"] forState:UIControlStateHighlighted];
     [self.view addSubview:myUsername];
     
     // 初始化菜单列表名称
     menuNames = [NSArray arrayWithObjects:@"班级留言",@"在线交流",@"教育动态",@"我的账号", nil];
     // 去掉UITableView的分隔线
     [self.menuTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
+    // 初始化班级成员一横条
+    UIImageView *banjichengyuan = [[UIImageView alloc] initWithFrame:CGRectMake(0, 86, 320, 33)];
+    [banjichengyuan setImage:[UIImage imageNamed:@"banjichengyuan.png"]];
+    [self.view addSubview:banjichengyuan];
+    
+    // 初始化刷新按钮
+    UIButton *refreshBtn = [[UIButton alloc] initWithFrame:CGRectMake(297, 95, 12, 15)];
+    [refreshBtn setImage:[UIImage imageNamed:@"refresh.png"] forState:UIControlStateNormal];
+    [refreshBtn addTarget:self action:@selector(startAnimation:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:refreshBtn];
+    
+    // 初始化班级按钮s
+    UIButton *banji_btn1 = [[UIButton alloc] initWithFrame:CGRectMake(0, 119, 320, 44)];
+    [banji_btn1 setImage:[UIImage imageNamed:@"banji_bg.png"] forState:UIControlStateNormal];
+    UILabel *btnName1 = [[UILabel alloc] initWithFrame:CGRectMake(48, 6, 150, 30)];
+    [btnName1 setText:@"六年一班成员"];
+//    [btnName1 setFont:[UIFont fontWithName:@"Heiti SC" size:14]];
+    [btnName1 setFont:[UIFont fontWithName:[[UIFont fontNamesForFamilyName:@"Heiti SC"] objectAtIndex:1] size:16]];
+    [btnName1 setBackgroundColor:[UIColor clearColor]];
+    [btnName1 setTextColor:[UIColor whiteColor]];
+    [banji_btn1 addSubview:btnName1];
+    [self.view addSubview:banji_btn1];
+    
+    UIButton *banji_btn2 = [[UIButton alloc] initWithFrame:CGRectMake(0, 163, 320, 44)];
+    [banji_btn2 setImage:[UIImage imageNamed:@"banji_bg.png"] forState:UIControlStateNormal];
+    UILabel *btnName2 = [[UILabel alloc] initWithFrame:CGRectMake(48, 6, 150, 30)];
+    [btnName2 setText:@"六年四班成员  "];
+    [btnName2 setFont:[UIFont fontWithName:[[UIFont fontNamesForFamilyName:@"Heiti SC"] objectAtIndex:1] size:16]];
+    [btnName2 setBackgroundColor:[UIColor clearColor]];
+    [btnName2 setTextColor:[UIColor whiteColor]];
+    [banji_btn2 addSubview:btnName2];
+    [self.view addSubview:banji_btn2];    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,7 +120,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-/* UITableView */
+- (void) testBtn:(id)sender {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"测试" message:@"跳转聊天测试" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    [alert show];
+}
+
+#pragma mark tableView
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [menuNames count];
@@ -105,9 +153,29 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     LQMessageViewController *messageVC = [[LQMessageViewController alloc] init];
-    UINavigationController *nav = [self.revealSideViewController rootViewController];
-    [self.revealSideViewController popViewControllerAnimated:YES];
-    [nav pushViewController:messageVC animated:YES];
+//    UINavigationController *nav = [self.revealSideViewController rootViewController];
+//    [self.revealSideViewController popViewControllerAnimated:YES];
+//    [nav pushViewController:messageVC animated:YES];
 
 }
+
+#pragma mark -
+
+- (void)startAnimation:(UIButton *)button {
+    button.userInteractionEnabled = NO;
+    
+    CABasicAnimation* rotationAnimation;
+    // transform.rotation.z是垂直与平面的轴即z轴
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0 ];///* full rotation*/ * rotations * duration ];
+    rotationAnimation.duration = 1;
+    rotationAnimation.cumulative = YES;
+    // 转10圈
+    rotationAnimation.repeatCount = 6;
+    
+    [button.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+    
+    button.userInteractionEnabled = YES;
+}
+
 @end

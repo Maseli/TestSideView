@@ -6,6 +6,7 @@
 //  Copyright (c) 2013年 M. All rights reserved.
 //
 
+#import <AudioToolbox/AudioToolbox.h>
 #import "LQViewController.h"
 #import "LQMenuViewController.h"
 #import "LQSetupViewController.h"
@@ -33,16 +34,15 @@
     // 设置NavigatonBar
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"banner.png"] forBarMetrics:UIBarMetricsDefault];
     
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-    [title setText:@"测 试"];	
-    [title setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(22)]];
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
+    [title setText:@"六年一班主页"];
+    [title setFont:[UIFont fontWithName:[[UIFont fontNamesForFamilyName:@"Heiti SC"] objectAtIndex:0] size:30]];
     title.textColor = [UIColor whiteColor];
     [title setTextAlignment:NSTextAlignmentCenter];
     [title setBackgroundColor:[UIColor clearColor]];
-    [title setCenter:CGPointMake(160, 22)];
+    [title setCenter:CGPointMake(160, 18)];
     title.adjustsFontSizeToFitWidth = YES;
     [self.navigationController.navigationBar addSubview:title];
-    
     
     UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
     [leftButton setTitle:[super navigationController].title forState:UIControlEventTouchUpInside];
@@ -151,6 +151,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     
+    // 第一行显示图片一张
     if(indexPath.row == 0) {
         // 如果是第一行,则显示图片一张
         UIImageView *cover = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 119)];
@@ -165,6 +166,11 @@
         [label setText:@"明天下午召开家长会，请家长务必......"];
         [label setBackgroundColor:[UIColor clearColor]];
         [cell addSubview:label];
+        
+        // 添加每个cell底下的分隔线
+        UIImageView *indexCell_separator = [[UIImageView alloc] initWithFrame:CGRectMake(0, 55, 320, 1)];
+        [indexCell_separator setImage:[UIImage imageNamed:@"indexCell_separator.png"]];
+        [cell addSubview:indexCell_separator];
     }
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
@@ -174,7 +180,7 @@
     if(indexPath.row == 0)
         return 119;
     else
-        return 57;
+        return 56;
 }
 
 - (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {

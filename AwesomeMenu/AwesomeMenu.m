@@ -20,6 +20,7 @@ static CGFloat const kAwesomeMenuDefaultMenuWholeAngle = M_PI * 2;
 static CGFloat const kAwesomeMenuDefaultExpandRotation = M_PI;
 static CGFloat const kAwesomeMenuDefaultCloseRotation = M_PI * 2;
 
+static BOOL isPlayStartSound = YES;
 
 static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float angle)
 {
@@ -185,6 +186,10 @@ static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float an
     [UIView animateWithDuration:0.2f animations:^{
         _addButton.transform = CGAffineTransformMakeRotation(angle);
     }];
+    if(isPlayStartSound == NO) {
+        NSLog(@"向左转！");
+        isPlayStartSound = YES;
+    }
     
     if ([_delegate respondsToSelector:@selector(AwesomeMenu:didSelectIndex:)])
     {
@@ -238,6 +243,17 @@ static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float an
 }
 - (void)setExpanding:(BOOL)expanding
 {
+    /*
+    static BOOL isExpanding = NO;
+    if(isExpanding == NO) {
+        NSLog(@"Play");
+        isExpanding = YES;
+    } else {
+        NSLog(@"Display");
+        isExpanding = NO;
+    }
+    */
+    
 	if (expanding) {
 		[self _setMenu];
 	}
@@ -249,6 +265,9 @@ static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float an
     [UIView animateWithDuration:0.2f animations:^{
         _addButton.transform = CGAffineTransformMakeRotation(angle);
     }];
+    if(isPlayStartSound == YES) {
+        NSLog(@"向左转。。。。。。");
+    }
     
     // expand or close animation
     if (!_timer) 
@@ -265,7 +284,6 @@ static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float an
 #pragma mark - private methods
 - (void)_expand
 {
-	
     if (_flag == [_menusArray count])
     {
         _isAnimating = NO;

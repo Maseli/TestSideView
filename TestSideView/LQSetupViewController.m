@@ -71,8 +71,9 @@
     UIButton *myUsername = [[UIButton alloc] initWithFrame:CGRectMake(0, 43, 320, 43)];
     [myUsername setBackgroundColor:[UIColor clearColor]];
     [myUsername setImage:[UIImage imageNamed:@"myUsername_btn.png"] forState:UIControlStateNormal];
-//    [myUsername setImage:[UIImage imageNamed:@"myUsername_btn.png"] forState:UIControlStateHighlighted];
+    [myUsername addTarget:self action:@selector(myUsername:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:myUsername];
+    
     
     // 初始化菜单列表名称
     menuNames = [NSArray arrayWithObjects:@"班级留言",@"在线交流",@"教育动态",@"我的账号", nil];
@@ -100,7 +101,15 @@
     [btnName1 setBackgroundColor:[UIColor clearColor]];
     [btnName1 setTextColor:[UIColor whiteColor]];
     [banji_btn1 addSubview:btnName1];
+    
+    // 初始化班级设置按钮
+    UIButton *setupUIButton = [[UIButton alloc] initWithFrame:CGRectMake(270, 10, 23, 23)];
+    [setupUIButton setImage:[UIImage imageNamed:@"setup.png"] forState:UIControlStateNormal];
+    [setupUIButton addTarget:self action:@selector(startAnimation:) forControlEvents:UIControlEventTouchUpInside];
+    [banji_btn1 addSubview:setupUIButton];
+    
     [self.view addSubview:banji_btn1];
+    
     
     UIButton *banji_btn2 = [[UIButton alloc] initWithFrame:CGRectMake(0, 163, 320, 44)];
     [banji_btn2 setImage:[UIImage imageNamed:@"banji_bg.png"] forState:UIControlStateNormal];
@@ -170,12 +179,21 @@
     rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0 ];///* full rotation*/ * rotations * duration ];
     rotationAnimation.duration = 1;
     rotationAnimation.cumulative = YES;
-    // 转10圈
+    // 转6圈
     rotationAnimation.repeatCount = 6;
     
     [button.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
     
     button.userInteractionEnabled = YES;
+}
+
+- (void) myUsername:(UIButton *)button {
+    //- (void) popViewControllerWithNewCenterController:(UIViewController*)centerController animated:(BOOL)animated completion:(void(^)())completionBlock;
+    LQMessageViewController *mCon = [[LQMessageViewController alloc] initWithNibName:@"LQMessageViewController" bundle:nil];
+//    [self.revealSideViewController popViewControllerWithNewCenterController:mCon animated:YES];
+    mCon.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self presentModalViewController:mCon animated:YES];
+    
 }
 
 @end

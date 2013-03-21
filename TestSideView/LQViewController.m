@@ -10,9 +10,12 @@
 #import "LQViewController.h"
 #import "LQMenuViewController.h"
 #import "LQSetupViewController.h"
+#import "LQMessageViewController.h"
 #import "vars.h"
 
-@interface LQViewController ()
+@interface LQViewController () {
+    UIImageView *cover;
+}
 
 @end
 
@@ -21,6 +24,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // 加载广告画面(全屏的)
+    UIImage *image = [UIImage imageNamed:@"adExample_i5.PNG"];
+    cover = [[UIImageView alloc] initWithImage:image];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    [self.view addSubview:cover];
+    // 定时几秒后让广告消失,同时加载其它view
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:4 target: self selector:@selector(initingViews:) userInfo:nil repeats:NO];
+}
+
+- (void) initingViews:(id)sender {
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    // 删除广告
+    [cover removeFromSuperview];
+    // 还原导航条
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
     
     // 初始化这个view的背景,都是木纹图案
     UIImageView *rightBg;
@@ -35,13 +54,12 @@
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"banner.png"] forBarMetrics:UIBarMetricsDefault];
     
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
-    [title setText:@"六年一班主页"];
-    [title setFont:[UIFont fontWithName:[[UIFont fontNamesForFamilyName:@"Heiti SC"] objectAtIndex:0] size:30]];
+    [title setText:@"六年一班"];
+    [title setFont:[UIFont fontWithName:[[UIFont fontNamesForFamilyName:@"Heiti SC"] objectAtIndex:0] size:20]];
     title.textColor = [UIColor whiteColor];
     [title setTextAlignment:NSTextAlignmentCenter];
     [title setBackgroundColor:[UIColor clearColor]];
-    [title setCenter:CGPointMake(160, 18)];
-    title.adjustsFontSizeToFitWidth = YES;
+    [title setCenter:CGPointMake(160, 22)];
     [self.navigationController.navigationBar addSubview:title];
     
     UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
@@ -73,13 +91,13 @@
     [self.newsTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.newsTable setBackgroundView:rightBg];
     [self.view addSubview:self.newsTable];
-        
+    
     /* 初始化AwesomeMenu */
     UIImage *storyMenuItemImage = [UIImage imageNamed:@"bg-menuitem.png"];
     UIImage *storyMenuItemImagePressed = [UIImage imageNamed:@"bg-menuitem-highlighted.png"];
     
-//    UIImage *starImage = [UIImage imageNamed:@"icon-star.png"];
-
+    //    UIImage *starImage = [UIImage imageNamed:@"icon-star.png"];
+    
     AwesomeMenuItem *starMenuItem1 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage highlightedImage:storyMenuItemImagePressed ContentImage:[UIImage imageNamed:@"roundIcon1.png"] highlightedContentImage:nil];
     AwesomeMenuItem *starMenuItem2 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage highlightedImage:storyMenuItemImagePressed ContentImage:[UIImage imageNamed:@"roundIcon2.png"] highlightedContentImage:nil];
     AwesomeMenuItem *starMenuItem3 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage highlightedImage:storyMenuItemImagePressed ContentImage:[UIImage imageNamed:@"roundIcon3.png"] highlightedContentImage:nil];
@@ -109,9 +127,19 @@
     menu.delegate = self;
     
     [self.view addSubview:menu];
-
+    
     /* AwesomeMenu实例结束 */
     
+    LQMenuViewController *menuController = [[LQMenuViewController alloc] initWithNibName:@"LQMenuViewController" bundle:nil];
+    [self.revealSideViewController preloadViewController:menuController forSide:PPRevealSideDirectionLeft];
+    
+    LQSetupViewController *setup = [[LQSetupViewController alloc] initWithNibName:@"LQSetupViewController" bundle:nil];
+    [self.revealSideViewController preloadViewController:setup forSide:PPRevealSideDirectionRight];
+    
+    // 设置左边滑动的Offset值
+    [self.revealSideViewController changeOffset:OFFSETLEFT forDirection:PPRevealSideDirectionLeft];
+    // 设置右边滑动的Offset值
+    [self.revealSideViewController changeOffset:OFFSETRIGHT forDirection:PPRevealSideDirectionRight];
 }
 
 - (void)didReceiveMemoryWarning
@@ -121,17 +149,6 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    LQMenuViewController *menu = [[LQMenuViewController alloc] initWithNibName:@"LQMenuViewController" bundle:nil];
-    [self.revealSideViewController preloadViewController:menu forSide:PPRevealSideDirectionLeft];
-    
-    LQSetupViewController *setup = [[LQSetupViewController alloc] initWithNibName:@"LQSetupViewController" bundle:nil];
-    [self.revealSideViewController preloadViewController:setup forSide:PPRevealSideDirectionRight];
-    
-    // 设置左边滑动的Offset值
-    [self.revealSideViewController changeOffset:OFFSETLEFT forDirection:PPRevealSideDirectionLeft];
-    // 设置右边滑动的Offset值
-    [self.revealSideViewController changeOffset:OFFSETRIGHT forDirection:PPRevealSideDirectionRight];
-
 }
 
 - (void)showLeft:(id)sender {
@@ -154,9 +171,9 @@
     // 第一行显示图片一张
     if(indexPath.row == 0) {
         // 如果是第一行,则显示图片一张
-        UIImageView *cover = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 119)];
-        [cover setImage:[UIImage imageNamed:@"mainCover.png"]];
-        [cell addSubview:cover];
+        UIImageView *firstLineCover = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 119)];
+        [firstLineCover setImage:[UIImage imageNamed:@"mainCover.png"]];
+        [cell addSubview:firstLineCover];
     } else {
         // 如果不是第一行,加载该行的背景
         UIImageView *cellBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"indexCell_bg.png"]];
@@ -171,8 +188,14 @@
         UIImageView *indexCell_separator = [[UIImageView alloc] initWithFrame:CGRectMake(0, 55, 320, 1)];
         [indexCell_separator setImage:[UIImage imageNamed:@"indexCell_separator.png"]];
         [cell addSubview:indexCell_separator];
+        
+        // 添加feed按钮
+        UIButton *feedBtn = [[UIButton alloc] initWithFrame:CGRectMake(268, 15, 42, 25)];
+        [feedBtn setImage:[UIImage imageNamed:@"feedBtn.png"] forState:UIControlStateNormal];
+        [cell addSubview:feedBtn];
     }
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
     return cell;
 }
 
@@ -184,7 +207,16 @@
 }
 
 - (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"1111111111111111111111------%d",indexPath.row);
+//    NSLog(@"1111111111111111111111------%d",indexPath.row);
+    
+    if(indexPath.row == 0)
+        return;
+    
+    LQMessageViewController *messageController = [[LQMessageViewController alloc] initWithNibName:@"LQMessageViewController" bundle:nil];
+//    [self.navigationController pushViewController:messageController animated:YES];
+    //- (void) replaceCentralViewControllerWithNewController:(UIViewController*)newCenterController animated:(BOOL)animated animationDirection:(PPRevealSideDirection)direction completion:(void(^)())completionBlock;
+
+    [self.revealSideViewController replaceCentralViewControllerWithNewController:messageController animated:YES animationDirection:PPRevealSideDirectionLeft completion:nil];
 }
 
 #pragma mark -

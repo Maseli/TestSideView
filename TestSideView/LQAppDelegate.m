@@ -8,6 +8,7 @@
 
 #import "LQAppDelegate.h"
 #import "LQViewController.h"
+#import "vars.h"
 
 @implementation LQAppDelegate
 
@@ -30,7 +31,19 @@
     [self.revealSideViewController changeOffset:400.0f forDirection:PPRevealSideDirectionLeft];
     // 设置右边滑动的Offset值
     [self.revealSideViewController changeOffset:400.0f forDirection:PPRevealSideDirectionRight];
-    
+
+//    LQExampleViewController *adController = [[LQExampleViewController alloc] initWithNibName:@"LQExampleViewController" bundle:nil];
+////    if(!iPhone5) {
+////        [adController.view addSubview:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"adExample_i5.png"]]];
+////    } else {
+//    
+////        [adController.view addSubview:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"adExample_i5@2x.PNG"]]];
+////    }
+//    adController.wantsFullScreenLayout = YES;
+//    self.window.rootViewController = adController;
+//    self.window.backgroundColor = [UIColor whiteColor];
+//    [self.window makeKeyAndVisible];
+        
     self.window.rootViewController = self.revealSideViewController;
     
     self.window.backgroundColor = [UIColor whiteColor];

@@ -833,15 +833,17 @@ static const CGFloat MAX_TRIGGER_OFFSET = 100.0;
 }
 
 - (void) resizeCurrentView {
+    // 获取要关闭的方向
     PPRevealSideDirection direction = [self getSideToClose];
-    
+    // isOptionEnabled:PPRevealSideOptionsKeepOffsetOnRotation
+    // 在只有self.options的几项配置时才为YES
     if (
         ([self isOptionEnabled:PPRevealSideOptionsKeepOffsetOnRotation] && (direction == PPRevealSideDirectionRight || direction == PPRevealSideDirectionLeft))
         ||
         (direction == PPRevealSideDirectionBottom || direction == PPRevealSideDirectionTop)
         ) {
-        _rootViewController.view.frame = [self getSlidingRectForOffset:[self getOffsetForDirection:direction]
-                                                          forDirection:direction];
+        // 当满足部分条件左右滑动,或者上下滑动时
+        _rootViewController.view.frame = [self getSlidingRectForOffset:[self getOffsetForDirection:direction] forDirection:direction];
     }
 }
 
@@ -998,8 +1000,10 @@ static const CGFloat MAX_TRIGGER_OFFSET = 100.0;
 
 - (void) removeAllGestures {
     for (UIGestureRecognizer* gest in _gestures) {
+        // 让手势绑定的view删除手势
         [gest.view removeGestureRecognizer:gest];
     }
+    // 释放所有手势
     [_gestures removeAllObjects];
 }
 
@@ -1068,6 +1072,7 @@ static const CGFloat MAX_TRIGGER_OFFSET = 100.0;
 }
 
 
+/* 获取要关闭的方向 */
 - (PPRevealSideDirection) getSideToClose {
     PPRevealSideDirection sideToReturn = PPRevealSideDirectionNone;
     if (![self isRightControllerClosed]) sideToReturn = PPRevealSideDirectionRight;
@@ -1081,15 +1086,20 @@ static const CGFloat MAX_TRIGGER_OFFSET = 100.0;
     //if (_wasClosed)
     // Don't know why I limited this test to the case pan from close. The same set min should happen when from open.
     // That's probably a failed attempt to handle slide from left to right when having controllers on both side. This works fine without this test
+    // 如果左右滑动,滑动距离最大为竖屏宽度
     if (direction == PPRevealSideDirectionLeft || direction == PPRevealSideDirectionRight) offset = MIN(CGRectGetWidth(PPScreenBounds()), offset);
     
     if (direction == PPRevealSideDirectionTop || direction == PPRevealSideDirectionBottom) offset = MIN(CGRectGetHeight(self.view.frame), offset);
+    // 初始化要返回的矩形,这个矩形是主屏幕移动之后的终点矩形
     CGRect rectToReturn = CGRectZero;
+    // 设置矩形的长宽为root视图的长宽
     rectToReturn.size = _rootViewController.view.frame.size;
     
     CGFloat width = CGRectGetWidth(_rootViewController.view.frame);
     CGFloat height = CGRectGetHeight(_rootViewController.view.frame);
+    // 根据移动的方向不同,设置对应的point
     switch (direction) {
+        // 如果是展示左边,就使用屏幕宽度减去位移,得到x坐标
         case PPRevealSideDirectionLeft:
             rectToReturn.origin = CGPointMake(width-offset, 0.0);
             break;
@@ -1110,6 +1120,7 @@ static const CGFloat MAX_TRIGGER_OFFSET = 100.0;
 }
 
 - (CGRect) getSlidingRectForOffset:(CGFloat)offset forDirection:(PPRevealSideDirection)direction {
+    // 根据offset和方向,获取移动位置之后的终点矩形
     return [self getSlidingRectForOffset:offset forDirection:direction andOrientation:PPInterfaceOrientation()];
 }
 
@@ -1467,6 +1478,7 @@ static const CGFloat MAX_TRIGGER_OFFSET = 100.0;
 #pragma mark - Orientation stuff
 
 - (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    // 先执行ViewController的willAnimateRotationToInterfaceOrientation方法
     [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
     
     if (!PPSystemVersionGreaterOrEqualThan(5.0)) [_rootViewController willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
@@ -1642,14 +1654,18 @@ static char revealSideInsetKey;
 
 #pragma mark - Some Functions
 UIInterfaceOrientation PPInterfaceOrientation(void) {
+    // 获取当前屏幕的方向
 	UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
 	return orientation;
 }
 
+/* 获取屏幕的竖屏区域 */
 CGRect PPScreenBounds(void) {
+    // 获取屏幕的矩形区域
 	CGRect bounds = [UIScreen mainScreen].bounds;
+    // 如果横屏的话,转成竖屏
 	if (UIInterfaceOrientationIsLandscape(PPInterfaceOrientation())) {
-		CGFloat width = bounds.size.width;
+        CGFloat width = bounds.size.width;
 		bounds.size.width = bounds.size.height;
 		bounds.size.height = width;
 	}

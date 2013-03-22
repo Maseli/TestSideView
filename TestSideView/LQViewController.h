@@ -13,4 +13,9 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *newsTable;
 
+@property (strong, nonatomic) NSString *pageTitle;
+
+// 废弃
+- (void)showHomePage:(id)sender;
+
 @end

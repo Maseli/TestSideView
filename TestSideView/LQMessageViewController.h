@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LQMessageViewController : UIViewController
+@interface LQMessageViewController : UIViewController <UITextViewDelegate>
+
+@property (strong, nonatomic) NSString *cuntomTitle;
 
 @end

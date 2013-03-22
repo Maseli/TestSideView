@@ -11,6 +11,7 @@
 #import "LQMenuViewController.h"
 #import "LQSetupViewController.h"
 #import "LQMessageViewController.h"
+#import "LQHomePageViewController.h"
 #import "vars.h"
 
 @interface LQViewController () {
@@ -20,6 +21,8 @@
 @end
 
 @implementation LQViewController
+
+@synthesize pageTitle = _pageTitle;
 
 - (void)viewDidLoad
 {
@@ -53,14 +56,22 @@
     // 设置NavigatonBar
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"banner.png"] forBarMetrics:UIBarMetricsDefault];
     
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
-    [title setText:@"六年一班"];
-    [title setFont:[UIFont fontWithName:[[UIFont fontNamesForFamilyName:@"Heiti SC"] objectAtIndex:0] size:20]];
-    title.textColor = [UIColor whiteColor];
-    [title setTextAlignment:NSTextAlignmentCenter];
-    [title setBackgroundColor:[UIColor clearColor]];
-    [title setCenter:CGPointMake(160, 22)];
-    [self.navigationController.navigationBar addSubview:title];
+    // 此处不需要自定义字体的标题,因为由于字符串长度问题会导致位置不好计算
+//    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
+//    [title setText:@"六年一班"];
+//    [title setFont:[UIFont fontWithName:[[UIFont fontNamesForFamilyName:@"Heiti SC"] objectAtIndex:0] size:20]];
+//    title.textColor = [UIColor whiteColor];
+//    [title setTextAlignment:NSTextAlignmentCenter];
+//    [title setBackgroundColor:[UIColor clearColor]];
+//    [title setCenter:CGPointMake(160, 22)];
+//    [self.navigationController.navigationBar addSubview:title];
+    
+    if(_pageTitle == nil) {
+        [self setPageTitle:@"六年一班"];
+    }
+    
+// setPageTitle方法完成了这个功能
+//    [self.navigationItem setTitle:self.pageTitle];
     
     UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
     [leftButton setTitle:[super navigationController].title forState:UIControlEventTouchUpInside];
@@ -140,6 +151,9 @@
     [self.revealSideViewController changeOffset:OFFSETLEFT forDirection:PPRevealSideDirectionLeft];
     // 设置右边滑动的Offset值
     [self.revealSideViewController changeOffset:OFFSETRIGHT forDirection:PPRevealSideDirectionRight];
+    
+    // 为子试图设置主视图句柄
+    [menuController setMainVC:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -209,19 +223,29 @@
 - (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
 //    NSLog(@"1111111111111111111111------%d",indexPath.row);
     
-    if(indexPath.row == 0)
-        return;
-    
-    LQMessageViewController *messageController = [[LQMessageViewController alloc] initWithNibName:@"LQMessageViewController" bundle:nil];
+//    if(indexPath.row == 0)
+//        return;
+//    
+//    LQMessageViewController *messageController = [[LQMessageViewController alloc] initWithNibName:@"LQMessageViewController" bundle:nil];
 //    [self.navigationController pushViewController:messageController animated:YES];
-    //- (void) replaceCentralViewControllerWithNewController:(UIViewController*)newCenterController animated:(BOOL)animated animationDirection:(PPRevealSideDirection)direction completion:(void(^)())completionBlock;
-
-    [self.revealSideViewController replaceCentralViewControllerWithNewController:messageController animated:YES animationDirection:PPRevealSideDirectionLeft completion:nil];
 }
 
 #pragma mark -
 /* AwesomeMenu */
 - (void)AwesomeMenu:(AwesomeMenu *)menu didSelectIndex:(NSInteger)idx {
     
+}
+
+#pragma mark api
+
+- (void)setPageTitle:(NSString *)pageTitle {
+    [self.navigationItem setTitle:pageTitle];
+}
+
+/* 显示教师主页 */
+- (void)showHomePage:(id)sender {
+    LQHomePageViewController *messageController = [[LQHomePageViewController alloc] initWithNibName:@"LQMessageViewController" bundle:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController pushViewController:messageController animated:YES];
 }
 @end

@@ -188,9 +188,9 @@
 }
 
 - (void) myUsername:(UIButton *)button {
-    //- (void) popViewControllerWithNewCenterController:(UIViewController*)centerController animated:(BOOL)animated completion:(void(^)())completionBlock;
     LQMessageViewController *mCon = [[LQMessageViewController alloc] initWithNibName:@"LQMessageViewController" bundle:nil];
 //    [self.revealSideViewController popViewControllerWithNewCenterController:mCon animated:YES];
+    [mCon setCuntomTitle:@"我的账号"];
     mCon.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [self presentModalViewController:mCon animated:YES];
     

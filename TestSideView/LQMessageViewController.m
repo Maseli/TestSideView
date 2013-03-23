@@ -6,6 +6,7 @@
 //  Copyright (c) 2013年 M. All rights reserved.
 //
 
+#import "LQViewController.h"
 #import "LQMessageViewController.h"
 
 @interface LQMessageViewController () {
@@ -65,6 +66,8 @@
     uilabel.enabled = NO;//lable必须设置为不可用
     uilabel.backgroundColor = [UIColor clearColor];
     [self.view addSubview:uilabel];
+    
+    [textView becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
@@ -76,6 +79,13 @@
 #pragma mark -
 
 -(void) backToMainView:(id)sender {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+-(void) saveMessage:(id)sender {
+    // 保存信息到首页
+    LQViewController *mainVC = [[LQViewController alloc] initWithNibName:@"LQViewController" bundle:nil];
+    
     [self dismissModalViewControllerAnimated:YES];
 }
 

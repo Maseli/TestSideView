@@ -12,16 +12,21 @@
 #import "LQSetupViewController.h"
 #import "LQMessageViewController.h"
 #import "LQHomePageViewController.h"
+#import "LQNotify.h"
 #import "vars.h"
 
 @interface LQViewController () {
     UIImageView *cover;
+    NSMutableArray *defaultData;
+    NSMutableArray *dataSet1;
+    NSMutableArray *dataSet4;
 }
 
 @end
 
 @implementation LQViewController
 
+@synthesize newsTable = _newsTable;
 @synthesize pageTitle = _pageTitle;
 
 - (void)viewDidLoad
@@ -35,6 +40,49 @@
     [self.view addSubview:cover];
     // 定时几秒后让广告消失,同时加载其它view
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:4 target: self selector:@selector(initingViews:) userInfo:nil repeats:NO];
+    
+    // 初始化数据dataSet1
+    dataSet1 = [NSMutableArray arrayWithCapacity:16];
+    for (int i=0; i<4; i++) {
+        LQNotify *notify1 = [[LQNotify alloc] init];
+        [notify1 setContent:@"明天下午召开家长会，请各位家长务必参加"];
+        LQNotify *notify2 = [[LQNotify alloc] init];
+        [notify2 setContent:@"下周召开运动会，请各位家长做好准备"];
+        LQNotify *notify3 = [[LQNotify alloc] init];
+        [notify3 setContent:@"测试"];
+        LQNotify *notify4 = [[LQNotify alloc] init];
+        [notify4 setContent:@"家长汇上线测试"];
+        [dataSet1 addObject:notify1];
+        [dataSet1 addObject:notify2];
+        [dataSet1 addObject:notify3];
+        [dataSet1 addObject:notify4];
+    }
+    
+    // 初始化数据dataSet4
+    dataSet4 = [NSMutableArray arrayWithCapacity:16];
+//    for (int i=0; i<4; i++) {
+        LQNotify *notify1 = [[LQNotify alloc] init];
+        [notify1 setContent:@"六年四班测试的公告"];
+        LQNotify *notify2 = [[LQNotify alloc] init];
+        [notify2 setContent:@"下周降温，请注意保暖"];
+        LQNotify *notify3 = [[LQNotify alloc] init];
+        [notify3 setContent:@"测试"];
+        LQNotify *notify4 = [[LQNotify alloc] init];
+        [notify4 setContent:@"周三的作业答案发布"];
+        LQNotify *notify5 = [[LQNotify alloc] init];
+        [notify5 setContent:@"明天需要缴纳本学期学费"];
+        LQNotify *notify6 = [[LQNotify alloc] init];
+        [notify6 setContent:@"家长汇上线测试"];
+        [dataSet4 addObject:notify1];
+        [dataSet4 addObject:notify2];
+        [dataSet4 addObject:notify3];
+        [dataSet4 addObject:notify4];
+        [dataSet4 addObject:notify5];
+        [dataSet4 addObject:notify6];
+//    }
+    
+    // 初始化默认集合
+    defaultData = dataSet1;
 }
 
 - (void) initingViews:(id)sender {
@@ -176,7 +224,8 @@
 #pragma mark TableView datas
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 16;
+    // 第一张是图片,要留一个位置
+    return [defaultData count]+1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -194,7 +243,8 @@
         [cell addSubview:cellBg];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(95, 13, 180, 33)];
         [label setFont:[UIFont fontWithName:@"Arial Rounded" size:32]];
-        [label setText:@"明天下午召开家长会，请家长务必......"];
+        // 从dafaultSet加载数据,第一张图片的位置已经跳过
+        [label setText:[[defaultData objectAtIndex:indexPath.row-1] content]];
         [label setBackgroundColor:[UIColor clearColor]];
         [cell addSubview:label];
         
@@ -230,16 +280,43 @@
 //    [self.navigationController pushViewController:messageController animated:YES];
 }
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+//    NSLog(@"tableView.contentOffset:%f, %f", tableView.contentOffset.x, tableView.contentOffset.y);
+    
+}
+
 #pragma mark -
 /* AwesomeMenu */
 - (void)AwesomeMenu:(AwesomeMenu *)menu didSelectIndex:(NSInteger)idx {
-    
+    if(idx == 3) {
+        LQMessageViewController *messageVC = [[LQMessageViewController alloc] initWithNibName:@"LQMessageViewController" bundle:nil];
+        [messageVC setCuntomTitle:@""];
+        messageVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        [self presentModalViewController:messageVC animated:YES];
+    }
 }
 
 #pragma mark api
 
+/* 设置页面标题,选择不同班级时使用 */
 - (void)setPageTitle:(NSString *)pageTitle {
     [self.navigationItem setTitle:pageTitle];
+}
+
+- (void)setHomePageDataSet:(int)idx title:(NSString *)title showMenu:(BOOL)isShowMenu {
+    // idx先忽略,通过title名称判断加载哪个数据集合
+    if([title isEqualToString:@"六年一班"]) {
+        defaultData = dataSet1;
+    } else {
+        defaultData = dataSet4;
+    }
+    // 重新加载数据
+    [self.newsTable reloadData];
+}
+
+- (void)addNewMessage:(int)idx message:(NSString *)message {
+    
 }
 
 /* 显示教师主页 */

@@ -189,6 +189,7 @@
         //其实这里定义objectValue这个对象可以直接用NSObject，因为我们已经知道它的类型了，id在不知道类型的情况下使用
         id objectValue = [classNames objectForKey:object];
         if(objectValue == sender) {
+            [self.mainVC setHomePageDataSet:0 title:(NSString *)object showMenu:YES];
             [self.mainVC setPageTitle:(NSString *)object];
             NSLog(@"键值为：%@",object);
         }

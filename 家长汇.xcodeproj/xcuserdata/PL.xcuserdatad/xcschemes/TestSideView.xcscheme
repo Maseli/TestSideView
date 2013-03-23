@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "04DE8EAA16EF956000B4A58F"
                BuildableName = "Demo.app"
-               BlueprintName = "Demo"
-               ReferencedContainer = "container:Demo.xcodeproj">
+               BlueprintName = "&#23478;&#38271;&#27719;"
+               ReferencedContainer = "container:&#23478;&#38271;&#27719;.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "04DE8EAA16EF956000B4A58F"
             BuildableName = "Demo.app"
-            BlueprintName = "Demo"
-            ReferencedContainer = "container:Demo.xcodeproj">
+            BlueprintName = "&#23478;&#38271;&#27719;"
+            ReferencedContainer = "container:&#23478;&#38271;&#27719;.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -53,8 +53,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "04DE8EAA16EF956000B4A58F"
             BuildableName = "Demo.app"
-            BlueprintName = "Demo"
-            ReferencedContainer = "container:Demo.xcodeproj">
+            BlueprintName = "&#23478;&#38271;&#27719;"
+            ReferencedContainer = "container:&#23478;&#38271;&#27719;.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -71,8 +71,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "04DE8EAA16EF956000B4A58F"
             BuildableName = "Demo.app"
-            BlueprintName = "Demo"
-            ReferencedContainer = "container:Demo.xcodeproj">
+            BlueprintName = "&#23478;&#38271;&#27719;"
+            ReferencedContainer = "container:&#23478;&#38271;&#27719;.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

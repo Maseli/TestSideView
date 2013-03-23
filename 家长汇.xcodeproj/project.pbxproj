@@ -87,6 +87,7 @@
 		6E28DCAA16F9D7520035F100 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E28DCA916F9D7520035F100 /* AudioToolbox.framework */; };
 		6E28DCAD16F9DED70035F100 /* nav_in.aif in Resources */ = {isa = PBXBuildFile; fileRef = 6E28DCAB16F9DED70035F100 /* nav_in.aif */; };
 		6E28DCAE16F9DED70035F100 /* nav_out.aif in Resources */ = {isa = PBXBuildFile; fileRef = 6E28DCAC16F9DED70035F100 /* nav_out.aif */; };
+		6E689F0916FD596E00BE6668 /* LQNotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E689F0816FD596E00BE6668 /* LQNotify.m */; };
 		6E77320F16F95D24001E9DB2 /* banjizhuye@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E77320D16F95D24001E9DB2 /* banjizhuye@2x.png */; };
 		6E77321016F95D24001E9DB2 /* banjizhuye.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E77320E16F95D24001E9DB2 /* banjizhuye.png */; };
 		6E77321416F95EB6001E9DB2 /* banjichengyuan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E77321216F95EB6001E9DB2 /* banjichengyuan@2x.png */; };
@@ -125,14 +126,14 @@
 		04DAF3E316F4A8C400E8031C /* LQMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQMessageViewController.h; sourceTree = "<group>"; };
 		04DAF3E416F4A8C400E8031C /* LQMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQMessageViewController.m; sourceTree = "<group>"; };
 		04DAF3E516F4A8C400E8031C /* LQMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQMessageViewController.xib; sourceTree = "<group>"; };
-		04DE8EAB16EF956000B4A58F /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		04DE8EAB16EF956000B4A58F /* 家长汇.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "家长汇.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04DE8EAF16EF956000B4A58F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		04DE8EB116EF956000B4A58F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		04DE8EB316EF956000B4A58F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		04DE8EB716EF956000B4A58F /* Demo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Demo-Info.plist"; sourceTree = "<group>"; };
+		04DE8EB716EF956000B4A58F /* 家长汇-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "家长汇-Info.plist"; sourceTree = "<group>"; };
 		04DE8EB916EF956000B4A58F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		04DE8EBB16EF956000B4A58F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		04DE8EBD16EF956100B4A58F /* Demo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Demo-Prefix.pch"; sourceTree = "<group>"; };
+		04DE8EBD16EF956100B4A58F /* 家长汇-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "家长汇-Prefix.pch"; sourceTree = "<group>"; };
 		04DE8EBE16EF956100B4A58F /* LQAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LQAppDelegate.h; sourceTree = "<group>"; };
 		04DE8EBF16EF956100B4A58F /* LQAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LQAppDelegate.m; sourceTree = "<group>"; };
 		04DE8EC116EF956100B4A58F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -214,6 +215,8 @@
 		6E28DCA916F9D7520035F100 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		6E28DCAB16F9DED70035F100 /* nav_in.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = nav_in.aif; sourceTree = "<group>"; };
 		6E28DCAC16F9DED70035F100 /* nav_out.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = nav_out.aif; sourceTree = "<group>"; };
+		6E689F0716FD596E00BE6668 /* LQNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQNotify.h; sourceTree = "<group>"; };
+		6E689F0816FD596E00BE6668 /* LQNotify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQNotify.m; sourceTree = "<group>"; };
 		6E77320D16F95D24001E9DB2 /* banjizhuye@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banjizhuye@2x.png"; sourceTree = "<group>"; };
 		6E77320E16F95D24001E9DB2 /* banjizhuye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banjizhuye.png; sourceTree = "<group>"; };
 		6E77321216F95EB6001E9DB2 /* banjichengyuan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banjichengyuan@2x.png"; sourceTree = "<group>"; };
@@ -230,8 +233,8 @@
 		6E77322716F9A4D5001E9DB2 /* homePage_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homePage_bg@2x.png"; sourceTree = "<group>"; };
 		6E77322A16F9A7B1001E9DB2 /* teacherPage_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "teacherPage_bg@2x.png"; sourceTree = "<group>"; };
 		6E77322B16F9A7B1001E9DB2 /* teacherPage_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = teacherPage_bg.png; sourceTree = "<group>"; };
-		6EBE08EA16FBDF5E00A416A5 /* icon_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_small.png; sourceTree = "<group>"; };
-		6EBE08EC16FBDF6200A416A5 /* icon_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_big.png; sourceTree = "<group>"; };
+		6EBE08EA16FBDF5E00A416A5 /* icon_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_small.png; path = ../icon_small.png; sourceTree = "<group>"; };
+		6EBE08EC16FBDF6200A416A5 /* icon_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_big.png; path = ../icon_big.png; sourceTree = "<group>"; };
 		6EBE08EF16FBF67400A416A5 /* LQHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQHomePageViewController.h; sourceTree = "<group>"; };
 		6EBE08F016FBF67400A416A5 /* LQHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQHomePageViewController.m; sourceTree = "<group>"; };
 		6EBE08F116FBF67400A416A5 /* LQHomePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQHomePageViewController.xib; sourceTree = "<group>"; };
@@ -278,8 +281,6 @@
 		04DE8EA016EF956000B4A58F = {
 			isa = PBXGroup;
 			children = (
-				6EBE08EC16FBDF6200A416A5 /* icon_big.png */,
-				6EBE08EA16FBDF5E00A416A5 /* icon_small.png */,
 				04FED88416F0E9DB001F19E3 /* README.md */,
 				04DE8EB516EF956000B4A58F /* TestSideView */,
 				04DE8EAE16EF956000B4A58F /* Frameworks */,
@@ -290,7 +291,7 @@
 		04DE8EAC16EF956000B4A58F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				04DE8EAB16EF956000B4A58F /* Demo.app */,
+				04DE8EAB16EF956000B4A58F /* 家长汇.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -310,6 +311,7 @@
 		04DE8EB516EF956000B4A58F /* TestSideView */ = {
 			isa = PBXGroup;
 			children = (
+				6E689F0616FD55B900BE6668 /* POJO */,
 				6EBE08EE16FBF65A00A416A5 /* ClassHomePage */,
 				04DAF3E916F4A8D100E8031C /* Message */,
 				6E0D0CA616F1C75B002C264A /* images */,
@@ -334,10 +336,10 @@
 			children = (
 				6E28DCAB16F9DED70035F100 /* nav_in.aif */,
 				6E28DCAC16F9DED70035F100 /* nav_out.aif */,
-				04DE8EB716EF956000B4A58F /* Demo-Info.plist */,
+				04DE8EB716EF956000B4A58F /* 家长汇-Info.plist */,
 				04DE8EB816EF956000B4A58F /* InfoPlist.strings */,
 				04DE8EBB16EF956000B4A58F /* main.m */,
-				04DE8EBD16EF956100B4A58F /* Demo-Prefix.pch */,
+				04DE8EBD16EF956100B4A58F /* 家长汇-Prefix.pch */,
 				04DE8EC116EF956100B4A58F /* Default.png */,
 				04DE8EC316EF956100B4A58F /* Default@2x.png */,
 				04DE8EC516EF956100B4A58F /* Default-568h@2x.png */,
@@ -495,12 +497,23 @@
 				6E0179AD16FB1A39009EBA07 /* feedBtn.png */,
 				6EFAB7C016F83258003DD047 /* mainCover@2x.png */,
 				6EFAB7C116F83258003DD047 /* mainCover.png */,
+				6EBE08EC16FBDF6200A416A5 /* icon_big.png */,
+				6EBE08EA16FBDF5E00A416A5 /* icon_small.png */,
 				6EFAB7D016F86769003DD047 /* index_bg@2x.png */,
 				6EFAB7D116F86769003DD047 /* index_bg.png */,
 				6E01799B16FAE0C7009EBA07 /* adExample_i5@2x.PNG */,
 				6E01799D16FAE12B009EBA07 /* adExample_i5.PNG */,
 			);
 			name = images;
+			sourceTree = "<group>";
+		};
+		6E689F0616FD55B900BE6668 /* POJO */ = {
+			isa = PBXGroup;
+			children = (
+				6E689F0716FD596E00BE6668 /* LQNotify.h */,
+				6E689F0816FD596E00BE6668 /* LQNotify.m */,
+			);
+			name = POJO;
 			sourceTree = "<group>";
 		};
 		6E77321116F95D29001E9DB2 /* left */ = {
@@ -529,9 +542,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		04DE8EAA16EF956000B4A58F /* Demo */ = {
+		04DE8EAA16EF956000B4A58F /* 家长汇 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 04DE8ECF16EF956100B4A58F /* Build configuration list for PBXNativeTarget "Demo" */;
+			buildConfigurationList = 04DE8ECF16EF956100B4A58F /* Build configuration list for PBXNativeTarget "家长汇" */;
 			buildPhases = (
 				04DE8EA716EF956000B4A58F /* Sources */,
 				04DE8EA816EF956000B4A58F /* Frameworks */,
@@ -541,9 +554,9 @@
 			);
 			dependencies = (
 			);
-			name = Demo;
+			name = "家长汇";
 			productName = TestSideView;
-			productReference = 04DE8EAB16EF956000B4A58F /* Demo.app */;
+			productReference = 04DE8EAB16EF956000B4A58F /* 家长汇.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -556,7 +569,7 @@
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = M;
 			};
-			buildConfigurationList = 04DE8EA516EF956000B4A58F /* Build configuration list for PBXProject "Demo" */;
+			buildConfigurationList = 04DE8EA516EF956000B4A58F /* Build configuration list for PBXProject "家长汇" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -568,7 +581,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				04DE8EAA16EF956000B4A58F /* Demo */,
+				04DE8EAA16EF956000B4A58F /* 家长汇 */,
 			);
 		};
 /* End PBXProject section */
@@ -695,6 +708,7 @@
 				04DFF6F916F464E600C1B28C /* AwesomeMenuItem.m in Sources */,
 				04DAF3E616F4A8C400E8031C /* LQMessageViewController.m in Sources */,
 				6EBE08F216FBF67400A416A5 /* LQHomePageViewController.m in Sources */,
+				6E689F0916FD596E00BE6668 /* LQNotify.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -773,10 +787,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TestSideView/Demo-Prefix.pch";
-				INFOPLIST_FILE = "TestSideView/Demo-Info.plist";
+				GCC_PREFIX_HEADER = "TestSideView/家长汇-Prefix.pch";
+				INFOPLIST_FILE = "TestSideView/家长汇-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				PRODUCT_NAME = Demo;
+				PRODUCT_NAME = "家长汇";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -785,10 +799,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TestSideView/Demo-Prefix.pch";
-				INFOPLIST_FILE = "TestSideView/Demo-Info.plist";
+				GCC_PREFIX_HEADER = "TestSideView/家长汇-Prefix.pch";
+				INFOPLIST_FILE = "TestSideView/家长汇-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				PRODUCT_NAME = Demo;
+				PRODUCT_NAME = "家长汇";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -796,7 +810,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		04DE8EA516EF956000B4A58F /* Build configuration list for PBXProject "Demo" */ = {
+		04DE8EA516EF956000B4A58F /* Build configuration list for PBXProject "家长汇" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				04DE8ECD16EF956100B4A58F /* Debug */,
@@ -805,7 +819,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		04DE8ECF16EF956100B4A58F /* Build configuration list for PBXNativeTarget "Demo" */ = {
+		04DE8ECF16EF956100B4A58F /* Build configuration list for PBXNativeTarget "家长汇" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				04DE8ED016EF956100B4A58F /* Debug */,
